@@ -47,9 +47,31 @@ nav a{
 	font-size: 16px;
 }
 
-nav a:hover, .active{
+nav a:hover{
 	text-decoration-line: underline;
 	color: blue;
+}
+
+.active a{
+	text-decoration-line: underline;
+	color: darkblue;
+}
+
+.skip a{
+  background: white;
+  left: 0;
+  padding: 6px;
+  -webkit-transition: top 1s ease-out;
+  transition: top 1s ease-out;
+  z-index: 1;
+
+  position: absolute;
+  margin-top: -40px;
+}
+
+.skip a:focus{
+  position: absolute;
+  margin-top: 0px;
 }
 
 nav li{
@@ -57,6 +79,7 @@ nav li{
   padding-right: 10px;
   padding-left: 10px;
 }
+
 
 .about_me{
 	display:flex;
@@ -72,6 +95,32 @@ nav li{
 	padding-bottom: 10px;
 	height:50%;
 	width:50%;
+
+  	animation-duration: 3s;
+  	-webkit-animation-duration: 3s;
+  	animation-name: slidein;
+  	-webkit-animation-name: slidein;
+  	animation-iteration-count:1;
+	-webkit-animation-iteration-count:1;
+}
+
+@keyframes slidein {
+  from {
+    margin-left: 100%;
+    width: 50%;}
+
+  to {
+    margin-left: 0%;
+    width: 50%;}
+}
+
+@-webkit-keyframes slidein{
+	from {
+    margin-left: 100%;
+    width: 50%; }
+  to {
+    margin-left: 0%;
+    width: 50%;}
 }
 
 h2{
@@ -81,40 +130,43 @@ h2{
 	font-weight: bold;
 }
 
-.favorites h2{
-	text-align: left;
-	padding-bottom: 5px;
-}
-
-.favorites p{
-	margin-left: 10px;
-}
 .favorites{
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: space-around;
 }
-
+.restaurants, .coffeeshops, .bars{
+	margin-right: 10px;
+	margin-left: 10px;
+}
 .restaurants img, .coffeeshops img, .bars img{
 	height: auto;
 	width: 100%;
 }
 
-.intro, .mgc_text, .espresso_text, .nightcap_text, .ricks_text{
+.intro, #honorable, .mani_text1, .mgc_text, .espresso_text, .nightcap_text, .ricks_text{
 	margin-left: 10px;
 	margin-right: 10px;
 	margin-bottom: 10px;
 }
 
+#honorable {
+    color: #2c2c2c;
+    letter-spacing: .05em;
+    text-shadow: 
+      4px 4px 0px #d5d5d5, 
+      7px 7px 0px rgba(0, 0, 0, 0.2);
+  }
+
 .mani{
 	display: grid;	
-	grid-template-columns: 10px 1fr 10px;
-	grid-template-rows: auto auto auto auto auto auto auto auto auto;
+	grid-template-columns: 10px auto 10px;
+	grid-template-rows: auto auto auto auto auto auto auto auto;
 }
 
 
-.mani_text1, .mani_image1, .mani_text2, .mani_image2, .mani_text3, .mani_image3, .mani_text4, .mani_image4, .mani_text5{
+.mani_image1, .mani_text2, .mani_image2, .mani_text3, .mani_image3, .mani_text4, .mani_image4, .mani_text5{
 	grid-column:2 / 3;
 	overflow: hidden;
 }
@@ -187,17 +239,16 @@ h2{
 		padding-left: 10px;
 	}
 
+/*Change grids for bars and coffeeshops*/
 	.mgc, .espresso, .ricks, .nightcap{
 		display: grid;
 		grid-template-columns: 10px auto auto 10px;
 		grid-template-rows: auto auto;
 		grid-gap: 10px 10px;
-}
-
+    }
 	.mgc_image1 img, .mgc_image2 img, .mgc_image3 img, .espresso_image1 img, .espresso_image2 img, .espresso_image3 img, .ricks_image1 img, .ricks_image2 img, .ricks_image3 img, .nightcap_image1 img, .nightcap_image2 img, .nightcap_image3 img{
 		margin-bottom: 0;
 	}
-
 	.mgc_image1, .espresso_image1, .ricks_image1, .nightcap_image1{
 		grid-column: 2 /span 1;
 		grid-row: 1/2;
@@ -211,6 +262,38 @@ h2{
 		grid-row: 2/3;
 	}
 
+/*Change grid for restaurants page*/  
+  .mani{
+	display: grid;	
+	grid-template-columns: 10px auto auto 10px;
+	grid-template-rows: auto auto auto auto;
+	grid-gap: 10px;
+	}
+
+  .mani_text2, .mani_image1, .mani_text4, .mani_image3{
+	grid-column:2 / 3;
+  }
+  .mani_text3, .mani_image2, .mani_text5, .mani_image4{
+  	grid-column:3 / 4;
+  }
+  .mani_image1, .mani_image2{
+  	grid-row: 1 / 2;
+  }
+  .mani_text2, .mani_text3{
+  	grid-row: 2 / 3;
+  }
+
+  .mani_image3, .mani_image4{
+  	grid-row: 3 / 4;
+  }
+  .mani_text4, .mani_text5{
+  	grid-row: 4 / 5;
+  }
+
+  .mani_image1 img, .mani_image2 img, .mani_image3 img, .mani_image4 img{
+	height: auto;
+	width: 100%;
+  }
 }
 
 @media screen and (min-width: 850px){
@@ -231,12 +314,13 @@ h2{
   	padding-top: 0;
    }
 
-	.mgc, .espresso, .ricks, .nightcap{
+/*Change grids for bars and coffeeshops*/	
+    .mgc, .espresso, .ricks, .nightcap{
 	  display: grid;
 	  grid-template-columns: 10px auto auto auto 10px;
 	  grid-template-rows: auto;
 	  grid-gap: 10px;
-}
+	}
 
 	.mgc_image1, .espresso_image1, .ricks_image1, .nightcap_image1{
 	  grid-column: 2 /span 1;
@@ -251,4 +335,36 @@ h2{
 		grid-row: 1/2;
 	}
 
+/*Change grid for restaurants page*/  
+  .mani{
+	grid-template-columns: 10px auto auto auto auto 10px;
+	grid-template-rows: auto auto;
+	}
+
+  .mani_text2, .mani_text3, .mani_text4, .mani_text5{
+    grid-row: 2 / 3;
+  }
+  .mani_image1, .mani_image2, .mani_image3, .mani_image4{
+	grid-row: 1 / 2;
+  }
+  .mani_text2, .mani_image1{
+	grid-column: 2 / 3;
+  }
+  .mani_text4, .mani_image3{
+  	grid-column: 4 / 5;
+  }
+  .mani_text3, .mani_image2{
+  	grid-column: 3 / 4;
+  }
+  .mani_text5, .mani_image4{
+  	grid-column: 5 / 6;
+  }
+
 }
+
+@media screen and (prefers-reduced-motion: reduce){
+  .about_me img{
+	animation: none;
+  }
+}
+
