@@ -7,8 +7,6 @@ body{
 }
 
 header{
-	padding-top: 20px;
-	padding-bottom: 20px;
 	font-weight: bold;
 	background-color: #EBEBEB;
 	background-image: url('../aa.jpg');
@@ -16,10 +14,18 @@ header{
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
-
+	min-height: 120px;
+	
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: center;
 }
+
 header h2{
 	margin-left: 10px;
+	vertical-align: middle;
+
 }
 
 footer{
@@ -102,6 +108,10 @@ nav li{
   	-webkit-animation-name: slidein;
   	animation-iteration-count:1;
 	-webkit-animation-iteration-count:1;
+}
+
+.bars p{
+	padding-bottom: 10px;
 }
 
 @keyframes slidein {
@@ -233,6 +243,7 @@ h2{
     display: flex;
   	flex-direction: column;
   	padding-top: 0;
+  	margin-right: 15px;
   }
 
 	h1{
